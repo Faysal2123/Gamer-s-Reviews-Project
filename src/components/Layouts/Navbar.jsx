@@ -1,5 +1,5 @@
 
-import {NavLink } from "react-router-dom";
+import {Link, NavLink } from "react-router-dom";
 import logo from "../../images/logo.png";
 
 const Navbar = () => {
@@ -97,10 +97,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn btn-accent font-bold">
+          <Link to='/login' className="btn btn-accent font-bold">
             Login
           
-          </a>
+          </Link>
         </div>
       </div>
     </div>
