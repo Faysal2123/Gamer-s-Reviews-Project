@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const AddReview = () => {
   const {user}=useContext(AuthContext)
@@ -24,9 +25,17 @@ const AddReview = () => {
           },
           body:JSON.stringify(review)
         })
-        .then(res =>res.json())
-        .then(data => console.log(data))
-
+        .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    if (data.insertedId) {
+      Swal.fire(
+        'Review Added!',
+        'Your review has been successfully submitted.',
+        'success'
+      );
+    }
+  })
     }
     return (
         <div>

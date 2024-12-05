@@ -20,7 +20,9 @@ import WatchList from "../Pages/WatchList";
             },
             {
                 path:'/allReviews',
-                element:<AllReviews></AllReviews>
+                element:<AllReviews></AllReviews>,
+                loader:()=>fetch('http://localhost:5000/addReview')
+
             },
             {
                 path:'/addReviews',
