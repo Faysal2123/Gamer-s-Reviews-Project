@@ -38,7 +38,7 @@ const Register = () => {
             return
         }
         console.log({name,email,photo,password})
-        createUser(email,password)
+        createUser(email,password,name)
         .then(result=>{
             const user=result.user;
             setUser(user)
