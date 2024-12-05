@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast, { Toaster } from 'react-hot-toast';
 import { GoogleAuthProvider } from "firebase/auth";
@@ -8,6 +8,8 @@ const Login = () => {
 
     const {userLogin,signInWithGoogle,setUser}=useContext(AuthContext)
     const [error,setError]=useState("")
+    const location=useLocation();
+    const navigate=useNavigate();
     const handleLoginIn=(e)=>{
         e.preventDefault();
         const form=e.target;
@@ -19,6 +21,14 @@ const Login = () => {
             const user=result.user;
             setUser(user)
             toast.success("Login Successful")
+            setTimeout(() => {
+              navigate(location?.state || '/');
+          }, 1000);
+        })
+        .catch((err)=>{
+          console.log("Error during Login:",err.message);
+          setError({...error, login:err.message});
+          toast.error(`Login Failed`);
         })
     }
     const handleGoogleLogin = () => {

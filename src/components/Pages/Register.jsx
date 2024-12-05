@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast, { Toaster } from 'react-hot-toast';
 const Register = () => {
     const{createUser,setUser}=useContext(AuthContext)
     const[error,setError]=useState("")
+    const navigate=useNavigate()
+   
     const validatePassword = (password) => {
         const hasUppercase = /[A-Z]/.test(password);
         const hasLowercase = /[a-z]/.test(password);
@@ -40,7 +42,11 @@ const Register = () => {
         .then(result=>{
             const user=result.user;
             setUser(user)
+            
             toast.success("Registration successful!")
+            setTimeout(()=>{
+              navigate('/')
+            },1000)
         })
         .catch((err)=>{
             setError(err.message)
