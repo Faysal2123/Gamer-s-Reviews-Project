@@ -1,11 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const WatchList = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  const watchlist = useLoaderData();
+  const[watchlists,setWatchlists]=useState(watchlist)
+
+  const handleRemove = (id) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+        
+        fetch(`http://localhost:5000/watchlist/${id}`,{
+            method:"DELETE"
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.deletedCount>0){
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                  });
+                  const remaining=watchlists.filter((watch)=>watch._id !== id)
+                  setWatchlists(remaining)
+            }
+        })
+        .catch((error) => console.error("Error removing item:", error));
+        }
+      });
+  };
+
+  return (
+    <div className="w-11/12 mx-auto px-6 py-10">
+      <h1 className="text-2xl font-bold mb-6">My Watchlist</h1>
+      {watchlists.length === 0 ? (
+        <p className="text-gray-600">Your watchlist is empty.</p>
+      ) : (
+        <table className="min-w-full bg-white border border-gray-200">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 border">Image</th>
+              <th className="px-4 py-2 border">Game Title</th>
+              <th className="px-4 py-2 border">User</th>
+              <th className="px-4 py-2 border">Rating</th>
+              <th className="px-4 py-2 border">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {watchlists.map((item) => (
+              <tr key={item._id} className="text-center">
+                <td className="px-4 py-2 border">
+                  <img
+                    src={item.image}
+                    alt={item.gameTitle}
+                    className="h-16 w-16 object-cover mx-auto rounded"
+                  />
+                </td>
+                <td className="px-4 py-2 border">{item.gameTitle}</td>
+                <td className="px-4 py-2 border">{item.addedBy}</td>
+                <td className="px-4 py-2 border">{item.rating}</td>
+                <td className="px-4 py-2 border">
+                  <button
+                    onClick={() => handleRemove(item._id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded"
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
 };
 
 export default WatchList;

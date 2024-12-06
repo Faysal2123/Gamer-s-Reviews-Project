@@ -3,8 +3,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const MyReview = () => {
-  const myReviews = useLoaderData(); // ডাটা লোড করা হচ্ছে
-  const [reviews, setReviews] = useState(myReviews); // সঠিকভাবে useState সেট করা হয়েছে
+  const myReviews = useLoaderData(); 
+  const [reviews, setReviews] = useState(myReviews);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -28,7 +28,7 @@ const MyReview = () => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-              // ফিল্টার করার মাধ্যমে লিস্ট থেকে ডিলিট হওয়া রিভিউ সরিয়ে দেওয়া
+            
               const remaining = reviews.filter((rev) => rev._id !== id);
               setReviews(remaining);
             }

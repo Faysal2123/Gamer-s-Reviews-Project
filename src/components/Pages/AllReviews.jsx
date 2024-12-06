@@ -31,7 +31,7 @@ const AllReviews = () => {
                             Description: {review.Description}
                         </p>
                         <Link
-                            to={`/review/${review._id}`}
+                            to={`/reviewDetails/${review._id}`}
                             className="mt-4 inline-block bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600"
                         >
                             Explore Details
