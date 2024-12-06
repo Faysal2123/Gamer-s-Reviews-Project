@@ -8,6 +8,7 @@ import MyReview from "../Pages/MyReview";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import WatchList from "../Pages/WatchList";
+import UpdateReview from "../Pages/UpdateReview";
 
  const router=createBrowserRouter([
     {
@@ -30,7 +31,8 @@ import WatchList from "../Pages/WatchList";
             },
             {
                 path:'/myReviews',
-                element:<MyReview></MyReview>
+                element:<MyReview></MyReview>,
+                loader:()=>fetch('http://localhost:5000/addReview')
             },
             {
                 path:'/watchlists',
@@ -43,6 +45,11 @@ import WatchList from "../Pages/WatchList";
             {
                 path:'/register',
                 element:<Register></Register>
+            },
+            {
+                path:'/updateReview/:id',
+                element:<UpdateReview></UpdateReview>,
+                loader:({params})=>fetch(`http://localhost:5000/addReview/${params.id}`)
             }
         ]
     }
