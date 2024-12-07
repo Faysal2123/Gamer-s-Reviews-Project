@@ -5,6 +5,8 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
 
+  darkMode: 'class', // এখানে class সেট করুন
+
   theme: {
     extend: {},
   },
@@ -12,4 +14,3 @@ export default {
     require('daisyui'),
   ],
 }
-
