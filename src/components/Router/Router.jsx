@@ -10,11 +10,13 @@ import Register from "../Pages/Register";
 import WatchList from "../Pages/WatchList";
 import UpdateReview from "../Pages/UpdateReview";
 import ReviewDetailsPage from "../Pages/ReviewDetailsPage";
+import Error from "../Pages/Error";
 
  const router=createBrowserRouter([
     {
         path:'/',
         element:<MainLayouts></MainLayouts>,
+        errorElement:<Error></Error>,
         children:[
             {
                 path:"/",
