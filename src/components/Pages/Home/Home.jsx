@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Slider from "./Slider";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
+import HighestRated from "../HighestRated";
 
 const Home = () => {
   const [isDarkMode, setDarkMode] = useState(false);
@@ -26,6 +27,7 @@ const Home = () => {
 
         <div>
           <Slider />
+          <HighestRated></HighestRated>
         </div>
       </div>
     </div>

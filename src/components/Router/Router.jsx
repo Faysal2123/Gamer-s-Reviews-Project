@@ -11,6 +11,7 @@ import WatchList from "../Pages/WatchList";
 import UpdateReview from "../Pages/UpdateReview";
 import ReviewDetailsPage from "../Pages/ReviewDetailsPage";
 import Error from "../Pages/Error";
+import PrivateRoute from "../Layouts/PrivateRoute";
 
  const router=createBrowserRouter([
     {
@@ -30,16 +31,16 @@ import Error from "../Pages/Error";
             },
             {
                 path:'/addReviews',
-                element:<AddReview></AddReview>
+                element:<PrivateRoute><AddReview></AddReview></PrivateRoute>
             },
             {
                 path:'/myReviews',
-                element:<MyReview></MyReview>,
+                element:<PrivateRoute><MyReview></MyReview></PrivateRoute>,
                 loader:()=>fetch('http://localhost:5000/addReview')
             },
             {
                 path:'/watchlists',
-                element:<WatchList></WatchList>,
+                element:<PrivateRoute><WatchList></WatchList></PrivateRoute>,
                 loader:()=>fetch('http://localhost:5000/watchlist')
             },
             {
