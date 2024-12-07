@@ -3,6 +3,7 @@ import Slider from "./Slider";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import HighestRated from "../HighestRated";
 import WatchVideo from "../WatchVideo";
+import OurService from "../OurService";
 
 const Home = () => {
   const [isDarkMode, setDarkMode] = useState(false);
@@ -30,6 +31,7 @@ const Home = () => {
           <Slider />
           <HighestRated></HighestRated>
           <WatchVideo></WatchVideo>
+          <OurService></OurService>
         </div>
       </div>
     </div>
