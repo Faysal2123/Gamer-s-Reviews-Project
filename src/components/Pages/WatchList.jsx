@@ -4,8 +4,9 @@ import Swal from 'sweetalert2';
 
 const WatchList = () => {
   const watchlist = useLoaderData();
-  const[watchlists,setWatchlists]=useState(watchlist)
 
+  const[watchlists,setWatchlists]=useState(watchlist)
+  
   const handleRemove = (id) => {
     Swal.fire({
         title: "Are you sure?",
@@ -55,6 +56,7 @@ const WatchList = () => {
               />
               <div>
                 <h2 className="font-bold text-lg">{item.gameTitle}</h2>
+                <p className="text-sm text-gray-500">User Name: {item. userName}</p>
                 <p className="text-sm text-gray-500">User: {item.addedBy}</p>
                 <p className="text-sm text-gray-500">Rating: {item.rating}</p>
               </div>
@@ -75,6 +77,7 @@ const WatchList = () => {
           <tr>
             <th className="px-4 py-2 border">Image</th>
             <th className="px-4 py-2 border">Game Title</th>
+            <th className='px-4 py-2 border'>User Name</th>
             <th className="px-4 py-2 border">User</th>
             <th className="px-4 py-2 border">Rating</th>
             <th className="px-4 py-2 border">Action</th>
@@ -91,6 +94,7 @@ const WatchList = () => {
                 />
               </td>
               <td className="px-4 py-2 border">{item.gameTitle}</td>
+              <td className='px-4 py-2 border'>{item. userName}</td>
               <td className="px-4 py-2 border">{item.addedBy}</td>
               <td className="px-4 py-2 border">{item.rating}</td>
               <td className="px-4 py-2 border">

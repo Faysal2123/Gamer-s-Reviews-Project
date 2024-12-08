@@ -109,11 +109,11 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             {user ? (
-              <div className="flex gap-3">
+              <div className="flex gap-3 items-center">
                 <div>
                 <img
                     className="h-10 w-10 object-cover rounded-full cursor-pointer hidden sm:block"
-                    src={user.image}
+                    src={user.photoURL}
                     alt="User Profile"
                     data-tooltip-id="user-tooltip"
                     data-tooltip-content={user.displayName

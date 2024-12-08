@@ -5,6 +5,8 @@ import Swal from 'sweetalert2';
 
 const ReviewDetailsPage = () => {
   const reviewDetails = useLoaderData();
+  console.log(reviewDetails)
+  
   const { user } = useContext(AuthContext);
   const { _id, image, gameTitle, Description, rating, genre, userName, email } = reviewDetails;
 
@@ -28,9 +30,11 @@ const ReviewDetailsPage = () => {
         reviewId: _id,
         gameTitle,
         addedBy: user.email,
-        image:image,
-        rating:rating
-      }),
+        image,
+        rating,
+        userName
+      
+    })
     })
       .then((res) => res.json())
       .then((data) => {

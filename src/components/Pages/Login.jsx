@@ -1,52 +1,76 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-import toast, { Toaster } from 'react-hot-toast';
-import { GoogleAuthProvider } from "firebase/auth";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
+  const { userLogin, signInWithGoogle, setUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const {userLogin,signInWithGoogle,setUser}=useContext(AuthContext)
-    const [error,setError]=useState("")
-    const location=useLocation();
-    const navigate=useNavigate();
-    const handleLoginIn=(e)=>{
-        e.preventDefault();
-        const form=e.target;
-        const email=form.email.value;
-        const password=form.password.value;
-        console.log({email,password})
-        userLogin(email,password)
-        .then(result =>{
-            const user=result.user;
-            setUser(user)
-            toast.success("Login Successful")
-            setTimeout(() => {
-              navigate(location?.state || '/');
-          }, 1000);
-        })
-        .catch((err)=>{
-          console.log("Error during Login:",err.message);
-          setError({...error, login:err.message});
-          toast.error(`Login Failed`);
-        })
-    }
-    const handleGoogleLogin = () => {
-        signInWithGoogle()
-            .then(result => {
-                const user = result.user;
-                setUser(user);
-                toast.success("Google login successful", {
-                    position: 'top-center'
-                });
-            })
-            .catch((err) => {
-                toast.error(`Google Login Failed: ${err.message}`, {
-                    position: 'top-center',
-                });
-            });
-    }
+  const handleLoginIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    userLogin(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        const lastSignInTime = result?.user?.metadata?.lastSignInTime;
+
         
+        fetch(`http://localhost:5000/addReview/${email}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email, lastSignInTime }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log("Sign-in info updated in DB",data));
+
+        toast.success("Login Successful");
+        setTimeout(() => {
+          navigate(location?.state || "/");
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log("Error during Login:", err.message);
+        setError(err.message);
+        toast.error("Login Failed");
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+
+        const lastSignInTime = user.metadata?.lastSignInTime;
+
+       
+        fetch(`http://localhost:5000/addReview/${user.email}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: user.email, lastSignInTime }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log("Google login info updated in DB",data));
+
+        toast.success("Google Login Successful");
+      })
+      .catch((err) => {
+        console.error("Error during Google Login:", err.message);
+        toast.error(`Google Login Failed: ${err.message}`);
+      });
+  };
+
   return (
     <div className="flex justify-center ">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mt-6 mb-6 lg:mt-14">
@@ -84,10 +108,20 @@ const Login = () => {
             <button className="btn btn-primary">Login</button>
           </div>
           <div>
-            <p>Don't have an account <Link to='/register' className="font-semibold text-blue-600">Register</Link></p>
+            <p>
+              Don't have an account{" "}
+              <Link to="/register" className="font-semibold text-blue-600">
+                Register
+              </Link>
+            </p>
           </div>
           <div className="divider">OR</div>
-          <button className="btn btn-outline btn-info" onClick={handleGoogleLogin}>Sign in with Google</button>
+          <button
+            className="btn btn-outline btn-info"
+            onClick={handleGoogleLogin}
+          >
+            Sign in with Google
+          </button>
         </form>
       </div>
       <Toaster />
