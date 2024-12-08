@@ -12,13 +12,13 @@ const AuthProvider = ({children}) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
-    const createUser = (email, password, name) => {
+    const createUser = (email, password, name,photo) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const user = result.user;
     
-                return updateProfile(user, { displayName: name }).then(() => {
+                return updateProfile(user, { displayName: name,photoURL:photo }).then(() => {
                     console.log("User profile updated with displayName:", name);
                     setUser({ ...user, displayName: name }); 
                     return user; 

@@ -1,10 +1,22 @@
-import React, { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
+
 
 const MyReview = () => {
-  const myReviews = useLoaderData(); 
-  const [reviews, setReviews] = useState(myReviews);
+  const { user } = useContext(AuthContext)  
+  const [reviews, setReviews] = useState([]);
+
+  
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`http://localhost:5000/addReview?email=${user.email}`) 
+        .then((res) => res.json())
+        .then((data) => setReviews(data))
+        .catch((err) => console.error("Error fetching reviews:", err));
+    }
+  }, [user]);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -28,7 +40,7 @@ const MyReview = () => {
                 text: "Your file has been deleted.",
                 icon: "success",
               });
-            
+
               const remaining = reviews.filter((rev) => rev._id !== id);
               setReviews(remaining);
             }
@@ -79,7 +91,7 @@ const MyReview = () => {
                   <td className="px-6 py-4 text-sm text-gray-700">
                     <Link
                       to={`/updateReview/${review._id}`}
-                      className="inline-block bg-blue-500 text-white text-sm md:text-base py-1 px-3  md:px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-200 mx-1"
+                      className="inline-block bg-blue-500 text-white text-sm md:text-base py-1 px-3 md:px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-200 mx-1"
                     >
                       Update
                     </Link>

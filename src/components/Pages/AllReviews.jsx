@@ -3,6 +3,7 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const AllReviews = () => {
   const reviews = useLoaderData();
+  console.log(reviews)
   const [filteredReviews, setFilteredReviews] = useState(reviews);
   const [selectedSort, setSelectedSort] = useState("rating-asc");
   const [selectedGenre, setSelectedGenre] = useState("");
