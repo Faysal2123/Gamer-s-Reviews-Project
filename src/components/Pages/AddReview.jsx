@@ -18,7 +18,7 @@ const AddReview = () => {
         const email=user?.email || "";
         const review={image,gameTitle,Description,rating,publishingYear,genre,userName,email}
         console.log(review)
-        fetch('http://localhost:5000/addReview',{
+        fetch('https://assignment-10-server-sigma-blond.vercel.app/addReview',{
           method:"POST",
           headers:{
             'content-type':'application/json'

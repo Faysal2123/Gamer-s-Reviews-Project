@@ -22,7 +22,7 @@ const UpdateReview = () => {
     const updateReview = { image, gameTitle, Description, rating, publishingYear, genre, userName, email };
 
     console.log(updateReview);
-    fetch(`http://localhost:5000/addReview/${_id}`, {
+    fetch(`https://assignment-10-server-sigma-blond.vercel.app/addReview/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

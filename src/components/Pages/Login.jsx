@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import animation1 from '../../assets/lottie/Animation1.json'
+import Lottie from "lottie-react";
 
 const Login = () => {
   const { userLogin, signInWithGoogle, setUser } = useContext(AuthContext);
@@ -22,7 +24,7 @@ const Login = () => {
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
 
         
-        fetch(`http://localhost:5000/addReview/${email}`, {
+        fetch(`https://assignment-10-server-sigma-blond.vercel.app/addReview/${email}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -53,7 +55,7 @@ const Login = () => {
         const lastSignInTime = user.metadata?.lastSignInTime;
 
        
-        fetch(`http://localhost:5000/addReview/${user.email}`, {
+        fetch(`https://assignment-10-server-sigma-blond.vercel.app/addReview/${user.email}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -72,7 +74,10 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center md:flex-row flex-col items-center ">
+      <div className="flex items-center justify-center">
+        <Lottie className="lg:h-80 lg:w-80 h-48" animationData={animation1}></Lottie>
+      </div>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mt-6 mb-6 lg:mt-14">
         <form className="card-body" onSubmit={handleLoginIn}>
           <div className="form-control">

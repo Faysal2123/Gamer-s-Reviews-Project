@@ -11,7 +11,7 @@ const MyReview = () => {
   
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/addReview?email=${user.email}`) 
+      fetch(`https://assignment-10-server-sigma-blond.vercel.app/addReview?email=${user.email}`) 
         .then((res) => res.json())
         .then((data) => setReviews(data))
         .catch((err) => console.error("Error fetching reviews:", err));
@@ -29,7 +29,7 @@ const MyReview = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/addReview/${id}`, {
+        fetch(`https://assignment-10-server-sigma-blond.vercel.app/addReview/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

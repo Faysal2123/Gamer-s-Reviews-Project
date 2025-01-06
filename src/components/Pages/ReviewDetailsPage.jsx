@@ -21,7 +21,7 @@ const ReviewDetailsPage = () => {
     }
 
     // Fetch request to add the item to the watchlist
-    fetch("http://localhost:5000/watchlist", {
+    fetch("https://assignment-10-server-sigma-blond.vercel.app/watchlist", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',

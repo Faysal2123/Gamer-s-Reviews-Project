@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast, { Toaster } from 'react-hot-toast';
+import animation2 from '../../assets/lottie/Animation2.json'
+import Lottie from "lottie-react";
 const Register = () => {
     const{createUser,setUser}=useContext(AuthContext)
     const[error,setError]=useState("")
@@ -57,7 +59,10 @@ const Register = () => {
 
     }
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center md:flex-row flex-col items-center">
+      <div className="flex items-center justify-center">
+        <Lottie className="lg:h-80 lg:w-80 h-48" animationData={animation2}></Lottie>
+      </div>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mt-5 mb-5">
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="form-control">

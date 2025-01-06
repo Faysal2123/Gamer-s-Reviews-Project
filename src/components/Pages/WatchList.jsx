@@ -12,7 +12,7 @@ const WatchList = () => {
   useEffect(() => {
     if (user?.email) {
       
-      fetch(`http://localhost:5000/watchlist?email=${user.email}`)
+      fetch(`https://assignment-10-server-sigma-blond.vercel.app/watchlist?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setWatchlists(data);
@@ -37,7 +37,7 @@ const WatchList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/watchlist/${id}`, {
+        fetch(`https://assignment-10-server-sigma-blond.vercel.app/watchlist/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -26,7 +26,7 @@ import PrivateRoute from "../Layouts/PrivateRoute";
             {
                 path:'/allReviews',
                 element:<AllReviews></AllReviews>,
-                loader:()=>fetch('http://localhost:5000/addReview')
+                loader:()=>fetch('https://assignment-10-server-sigma-blond.vercel.app/addReview')
 
             },
             {
@@ -36,12 +36,12 @@ import PrivateRoute from "../Layouts/PrivateRoute";
             {
                 path:'/myReviews',
                 element:<PrivateRoute><MyReview></MyReview></PrivateRoute>,
-                loader:()=>fetch('http://localhost:5000/addReview')
+                loader:()=>fetch('https://assignment-10-server-sigma-blond.vercel.app/addReview')
             },
             {
                 path:'/watchlists',
                 element:<PrivateRoute><WatchList></WatchList></PrivateRoute>,
-                loader:()=>fetch('http://localhost:5000/watchlist')
+                loader:()=>fetch('https://assignment-10-server-sigma-blond.vercel.app/watchlist')
             },
             {
                 path:'/login',
@@ -54,12 +54,12 @@ import PrivateRoute from "../Layouts/PrivateRoute";
             {
                 path:'/updateReview/:id',
                 element:<UpdateReview></UpdateReview>,
-                loader:({params})=>fetch(`http://localhost:5000/addReview/${params.id}`)
+                loader:({params})=>fetch(`https://assignment-10-server-sigma-blond.vercel.app/addReview/${params.id}`)
             },
             {
                 path:'/reviewDetails/:id',
                 element:<ReviewDetailsPage></ReviewDetailsPage>,
-                loader:({params})=>fetch(`http://localhost:5000/addReview/${params.id}`)
+                loader:({params})=>fetch(`https://assignment-10-server-sigma-blond.vercel.app/addReview/${params.id}`)
             }
         ]
     }

@@ -13,7 +13,7 @@ const Slider = () => {
     <div> 
       
   
-        <div className="md:w-[1400px] mx-auto mt-2 mb-3">
+        <div className="md:w-[80vw] lg:h-[60vh] mx-auto mt-2 mb-3">
           <Carousel
             showArrows={true}
             autoPlay={true}
@@ -22,7 +22,7 @@ const Slider = () => {
           >
             <div className="relative">
               <img
-                className="md:w-[800px] md:h-[650px] h-[310px] "
+                className="md:w-[800px]  h-[310px]  md:h-[60vh] "
                 src={img1}
                 alt="FIFA 23"
               />
@@ -33,7 +33,7 @@ const Slider = () => {
             </div>
             <div className="relative">
               <img
-                className="md:w-[800px] md:h-[650px] h-[310px] "
+                className="md:w-[800px] h-[310px] md:h-[60vh] "
                 src={img2}
                 alt="Valorant"
               />
@@ -44,7 +44,7 @@ const Slider = () => {
             </div>
             <div className="relative">
               <img
-                className="md:w-[800px] md:h-[650px] h-[310px] "
+                className="md:w-[800px] h-[310px] md:h-[60vh] "
                 src={img3}
                 alt="The Witcher: Wild Hunt"
               />

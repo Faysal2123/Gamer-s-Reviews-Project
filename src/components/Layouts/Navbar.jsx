@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../images/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
@@ -7,8 +7,10 @@ import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate=useNavigate()
   const handleLogout = () => {
     logOut();
+    navigate('/')
   };
   return (
     <div className="bg-base-300">
@@ -50,7 +52,9 @@ const Navbar = () => {
                     All Reviews
                   </NavLink>
                 </li>
-                <li>
+                {
+                  user && (<>
+                   <li>
                   <NavLink to="/addReviews" className="text-base">
                     Add Review
                   </NavLink>
@@ -65,15 +69,17 @@ const Navbar = () => {
                     Game WatchList
                   </NavLink>
                 </li>
+                  </>)
+                }
               </ul>
             </div>
             <div className="flex items-center text-center">
               <img
-                className="lg:h-20 lg:w-20 h-8 w-8 rounded-full "
+                className="lg:h-20 lg:w-20 h-10 w-10   "
                 src={logo}
                 alt="Game Glimpse Logo"
               />
-              <a className=" btn btn-ghost md:text-3xl text-xl font-bold text-blue-950  ">
+              <a className="btn btn-ghost md:text-3xl text-xl  text-blue-950 font-extrabold ">
                 Game Glimpse
               </a>
             </div>
@@ -90,7 +96,9 @@ const Navbar = () => {
                   All Reviews
                 </NavLink>
               </li>
-              <li>
+             {
+              user && (<>
+               <li>
                 <NavLink to="/addReviews" className="text-base">
                   Add Review
                 </NavLink>
@@ -105,6 +113,8 @@ const Navbar = () => {
                   Game WatchList
                 </NavLink>
               </li>
+              </>)
+             }
             </ul>
           </div>
           <div className="navbar-end">

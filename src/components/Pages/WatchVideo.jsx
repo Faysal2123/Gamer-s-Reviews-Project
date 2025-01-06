@@ -6,7 +6,7 @@ const WatchVideo = () => {
 
   // Fetch games from the backend
   useEffect(() => {
-    fetch("http://localhost:5000/getAllGames")
+    fetch("https://assignment-10-server-sigma-blond.vercel.app/getAllGames")
       .then((res) => res.json())
       .then((data) => setGames(data))
       .catch((error) => console.error("Error fetching games:", error));

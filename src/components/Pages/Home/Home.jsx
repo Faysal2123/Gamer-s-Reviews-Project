@@ -4,6 +4,7 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 import HighestRated from "../HighestRated";
 import WatchVideo from "../WatchVideo";
 import OurService from "../OurService";
+import Store from "./Store";
 
 const Home = () => {
   const [isDarkMode, setDarkMode] = useState(false);
@@ -31,6 +32,7 @@ const Home = () => {
           <Slider />
           <HighestRated></HighestRated>
           <WatchVideo></WatchVideo>
+          <Store></Store>
           <OurService></OurService>
         </div>
       </div>
