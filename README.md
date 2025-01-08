@@ -1,39 +1,72 @@
-Game Application
-The Game Application is a full-stack platform designed for game enthusiasts. It allows users to share and explore game reviews, manage their personal watchlist, and discover highly rated games across different genres. Built with React, Express.js, and MongoDB, this application offers an interactive and user-friendly experience.
+🎮 Game Application
+The Game Application is a full-stack gaming platform designed for game enthusiasts to explore, share, and manage game reviews. It provides secure user authentication, a personalized watchlist, and game discovery features with an intuitive, responsive user interface. Built with React, Express.js, and MongoDB, the application ensures a seamless and engaging user experience.
 
-Key Features
-User Authentication: Secure login and sign-up functionality using Firebase Authentication.
-Game Reviews: Users can add, update, delete, and view detailed reviews for games they’ve played.
-Watchlist Management: Users can easily add and remove games from their personalized watchlist.
-Top Rated Games: Users can browse the highest-rated games based on community reviews.
-Responsive Design: A mobile-friendly UI that provides a seamless experience across all device types.
-Sorting and Filtering: Game reviews can be filtered by genre and sorted by rating, making it easier for users to find relevant content.
-Technology Stack
-Frontend: React, React Router, Tailwind CSS, React Hot Toast, SweetAlert2
-Backend: Node.js, Express.js
-Database: MongoDB
-Authentication: Firebase Authentication (via Email and Google)
+🚀 Key Features
+🔐 Authentication & User Management
+User Registration: Secure account creation via Firebase Authentication (Email & Google).
+User Login: Fast and secure authentication using Firebase.
+Password Validation: Strong password enforcement for enhanced security.
+📝 Game Review System
+Add, Update & Delete Reviews: Users can write, edit, and remove their game reviews.
+Detailed Review Insights: Each review includes title, genre, rating, and user feedback.
+Sorting & Filtering: Reviews can be filtered by genre and sorted by rating.
+📌 Personalized Watchlist
+Add & Remove Games: Users can curate their own list of games to follow.
+Easy Access: Retrieve the watchlist anytime based on user authentication.
+🌟 Top-Rated Games & Discovery
+Highest-Rated Games: Browse the top 6 games based on community reviews.
+Paginated Game Listings: Load games dynamically with pagination support.
+📱 Responsive & Interactive UI
+Mobile-Friendly: Optimized for seamless performance across all devices.
+Smooth User Experience: Clean UI with interactive elements using SweetAlert2 & React Hot Toast.
+🛠 Technology Stack
+Frontend:
+🔹 React.js, React Router, Tailwind CSS
+🔹 UI Enhancements: SweetAlert2, React Hot Toast
 
-API Endpoints
-Reviews
-POST /addReview: Add a new game review.
+Backend:
+🔹 Node.js, Express.js
 
-Request Body: JSON object containing game details like title, genre, rating, etc.
-GET /addReview: Retrieve all reviews. Supports filtering by email, genre, and sorting by rating.
+Database:
+🔹 MongoDB (NoSQL Database)
 
-DELETE /addReview/:id: Delete a specific review by its ID.
+Authentication & Security:
+🔹 Firebase Authentication (Email & Google)
+🔹 JWT (JSON Web Token) for secure API access
 
-PUT /addReview/:id: Update a specific review by its ID.
+Tools & Workflow:
+🔹 Git & GitHub for version control
+🔹 NPM for package management
+🔹 RESTful API architecture
 
-Watchlist
-POST /watchlist: Add a new game to the user's watchlist.
+📌 API Endpoints
+🔐 User Authentication
+📌 POST /register – Create a new user account.
+📌 POST /login – Authenticate user login credentials.
+📌 POST /validatePassword – Verify password strength.
 
-Request Body: JSON object with game details and the user’s email.
-GET /watchlist: Retrieve the user's watchlist based on their email address.
+📝 Game Reviews
+📌 POST /addReview – Add a new game review.
+📌 GET /reviews – Retrieve all reviews (filters: email, genre, rating).
+📌 PUT /review/:id – Update an existing review.
+📌 DELETE /review/:id – Delete a review.
 
-DELETE /watchlist/:id: Remove a game from the watchlist by its ID.
+📌 Watchlist Management
+📌 POST /watchlist – Add a game to the user’s watchlist.
+📌 GET /watchlist – Retrieve the user’s saved games.
+📌 DELETE /watchlist/:id – Remove a game from the watchlist.
 
-Miscellaneous
-GET /highestRatedGames: Get the top 6 highest-rated games based on user reviews.
+🎮 Game Discovery & Miscellaneous
+📌 GET /highestRatedGames – Retrieve the top 6 highest-rated games.
+📌 GET /getAllGames – Fetch the next set of 9 games (for pagination).
 
-GET /getAllGames: Retrieve the next set of 9 games (for pagination purposes).
+📦 Dependencies & DevDependencies
+🔹 Dependencies
+Frontend: React.js, React Router, Tailwind CSS, Firebase
+Backend: Express.js, MongoDB, Mongoose, CORS, JWT
+UI Enhancements: SweetAlert2, React Hot Toast
+🔹 DevDependencies
+Nodemon – Automatic server restart during development
+ESLint & Prettier – Code formatting & linting
+🌐 Live Demo
+🔗 Live Link: https://assignment-10-212c3.web.app/
